@@ -1,7 +1,10 @@
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
 export const db = getFirestore();
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+  userAuth,
+  additionalData = {}
+) => {
   const userDocRef = doc(db, "users", userAuth.uid);
   console.log(userDocRef);
 
@@ -18,6 +21,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         displayName,
         email,
         createdAt,
+        ...additionalData,
       });
     } catch (error) {
       console.log("error creating user", error.message);
