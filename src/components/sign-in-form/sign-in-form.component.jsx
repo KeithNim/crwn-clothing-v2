@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { createUserDocumentFromAuth } from "../../utils/firebase/firebase-firestore";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import {
@@ -18,8 +17,7 @@ const SignInForm = () => {
   const { email, password } = formFields;
 
   const logGoogleUser = async () => {
-    const res = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(res.user);
+    await signInWithGooglePopup();
   };
 
   const handleChange = (event) => {
